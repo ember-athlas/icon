@@ -1,0 +1,19 @@
+{{#if (has-block)}}
+	<span class="fa-layers {{if this.fw 'fa-fw'}}">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox={{this.viewBox}} class={{this.classes}} role="img" aria-hidden="true" data-icon={{this.icon}} data-prefix={{this.prefix}} data-fa-transform={{this.transform}} style={{this.style}}>
+			{{html}}
+		</svg>
+
+		{{#each decorators as |decorator|}}
+			<FaIcon @icon={{decorator.icon}} @prefix={{decorator.prefix}} @transform="shrink-5 {{decorator.transformPosition}}" />
+		{{/each}}
+	</span>
+
+	{{yield (hash
+		decorator=(component 'fa-icon/decorator' parent=this)
+	)}}
+{{else}}
+<svg xmlns="http://www.w3.org/2000/svg" viewBox={{this.viewBox}} class={{this.classes}} role="img" aria-hidden="true" data-icon={{this.icon}} data-prefix={{this.prefix}} data-fa-transform={{this.transform}} style={{this.style}}>
+	{{html}}
+</svg>
+{{/if}}
